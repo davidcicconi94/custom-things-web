@@ -1,59 +1,81 @@
-# CustomThings
+### 1\. **CoreModule**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+Contiene servicios globales que se instancian **una sola vez**:
 
-## Development server
+* *   Interceptores HTTP
+*     
+* *   Guards
+*     
+* *   Servicios de autenticación
+*     
+* *   Servicios de configuración
+*     
 
-To start a local development server, run:
+Se importa **solo en `AppModule`**.
 
-```bash
-ng serve
-```
+### 2\. **SharedModule**
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Contiene componentes y utilidades **reutilizables**:
 
-## Code scaffolding
+* *   Botones, modales, inputs personalizados
+*     
+* *   Pipes (formateo de fechas, números)
+*     
+* *   Directivas (e.g. `appOnlyNumber`)
+*     
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Se importa donde se necesite, incluso en módulos de `features`.
 
-```bash
-ng generate component component-name
-```
+* * *
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 3\. **Features**
 
-```bash
-ng generate --help
-```
+Cada funcionalidad principal (auth, usuarios, dashboard, etc.) tiene su propio módulo:
 
-## Building
+* *   Contiene sus propias rutas, componentes, servicios, modelos.
+*     
+* *   Aplica **lazy loading** para rendimiento.
+*     
+* *   Facilita el trabajo por equipos (cada feature aislada).
+*     
 
-To build the project run:
+* * *
 
-```bash
-ng build
-```
+### 4\. **Routing por módulo**
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Cada `feature` tiene su propio archivo de rutas, por ejemplo:
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Esto se carga de forma perezosa desde `app-routing.module.ts`:
 
-```bash
-ng test
-```
+* * *
 
-## Running end-to-end tests
+### 5\. **LayoutModule**
 
-For end-to-end (e2e) testing, run:
+Agrupa layouts como:
 
-```bash
-ng e2e
-```
+* *   Layout de autenticación
+*     
+* *   Layout principal con sidebar y navbar
+*     
+* *   `router-outlet` central
+*     
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+* * *
+
+## 🧠 Tips adicionales
+
+* *   Usa **interfaces y DTOs** para tipar peticiones/respuestas.
+*     
+* *   Usa **Reactive Forms** y validadores personalizados.
+*     
+* *   Usa **rxjs** con buenas prácticas (unsubscribe automático, `takeUntil`, `async pipe`, etc).
+*     
+* *   Aplica **lazy loading** y preloading cuando escale la app.
+*     
+* *   Usa **Environment files** para separar configs (dev, prod).
+*     
+* *   Usa **eslint + prettier** y formatea código automáticamente.
+*
