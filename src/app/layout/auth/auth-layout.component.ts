@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { SHARED_STANDALONE_IMPORTS } from '../../shared/shared-standalone-imports';
 
-import { SHARED_STANDALONE_IMPORTS } from '../../../shared/shared-standalone-imports';
 
 @Component({
   selector: 'app-auth-layout',
