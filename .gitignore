@@ -1,1 +1,14 @@
-/node_modules
+# Angular / TypeScript build artifacts
+dist/
+out-tsc/
+*.js
+*.js.map
+*.d.ts
+*.tsbuildinfo
+*.metadata.json
+
+# Node modules
+node_modules/
+
+# IDE files
+.vscode/
